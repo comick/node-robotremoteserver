@@ -1,9 +1,78 @@
-node-robotremoteserver
-======================
+# node-robotremoteserver
 
-A node.js module providing the robot framework remote library interface.
+  A node.js module providing the [robot framework](http://www.robotframework.org) remote library interface.
 
-More information on robot framework at http://www.robotframework.org.
+## Installation
+
+Install [robot framework](http://code.google.com/p/robotframework/wiki/Installation) first. Then:
+
+    $ npm install robotremoteserver
+
+## Example
+
+examplelibrary.js
+
+```js
+'use strict'
+
+var fs = require('fs')
+var assert = require('assert')
+
+exports.count_items_in_directory = {
+    doc: 'Returns the number of items in the directory specified by `path`.',
+    args: ['path'],
+    impl: function (path, response) {
+        fs.readdir(path, function (err, files) {
+            response(err ? err : files.length)
+        })
+    }
+}
+
+exports.strings_should_be_equal = {
+    doc: 'Returns the number of items in the directory specified by `path`.',
+    args: ['str1', 'str2'],
+    impl: function (str1, str2) {
+        console.log('Comparing \'%s\' to \'%s\'', str1, str2)
+        assert.equal(str1, str2, 'Given strings are not equal')
+        return true
+    }
+}
+
+if (!module.parent) {
+    var robot = require('../lib/robotremoteserver')
+    var server = new robot.RobotRemoteServer([exports], 'localhost', 8270, true)
+}
+```
+
+remote_tests.txt:
+
+```
+*** Settings ***
+Library    Remote    http://localhost:${PORT}
+
+*** Variables ***
+${HOST}    localhost
+${PORT}    8270
+
+*** Test Cases ***
+
+Count Items in Directory
+    ${items1} =    Count Items In Directory    ${CURDIR}
+    ${items2} =    Count Items In Directory    ${TEMPDIR}
+    Log    ${items1} items in '${CURDIR}' and ${items2} items in '${TEMPDIR}'
+
+Failing Example
+    Strings Should Be Equal    Hello    Hello
+    Strings Should Be Equal    not      equal
+```
+
+Run the remote server:
+
+    $ node examplelibrary.js
+
+The launch tests:
+
+    $ pybot remote_tests.txt
 
 
 License
