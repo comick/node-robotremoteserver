@@ -1,9 +1,9 @@
 *** Settings ***
-Library    Remote    http://${HOST}:${PORT}
+Library    Remote    http://localhost:${PORT}
 
 *** Variables ***
 ${HOST}    localhost
-${PORT}    9090
+${PORT}    8270
 
 *** Test Cases ***
 

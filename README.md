@@ -3,7 +3,7 @@ node-robotremoteserver
 
 A node.js module providing the robot framework remote library interface.
 
-It's a heavy work in progress, still missing docs and tests.
+More information on robot framework at http://www.robotframework.org.
 
 
 License
