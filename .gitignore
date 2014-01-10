@@ -1,3 +1,9 @@
+*.iml
+node_modules
+report.html
+log.html
+.idea
+output.xml
 lib-cov
 *.seed
 *.log
