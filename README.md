@@ -23,7 +23,7 @@ exports.count_items_in_directory = {
     args: ['path'],
     impl: function (path, response) {
         fs.readdir(path, function (err, files) {
-            response(err ? err : files.length)
+            response(err || files.length)
         })
     }
 }
