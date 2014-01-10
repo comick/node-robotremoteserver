@@ -1,5 +1,8 @@
 # node-robotremoteserver
 
+[![NPM](https://nodei.co/npm/robotremoteserver.png?downloads=true&stars=true)](https://nodei.co/npm/robotremoteserver/)
+[![NPM](https://nodei.co/npm-dl/robotremoteserver.png?months=6)](https://nodei.co/npm/robotremoteserver/)
+
   A node.js module providing the [robot framework](http://www.robotframework.org) remote library interface.
 
 ## Installation
