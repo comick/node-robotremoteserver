@@ -1,6 +1,6 @@
 {
     "name": "robotremote",
-    "description": "A remote keyword server and client for the generic test automation Robot Framework.",
+    "description": "A remote keyword server and client for the generic test automation suite Robot Framework.",
     "keywords": [
         "robotframework",
         "robot framework",
@@ -14,7 +14,7 @@
         "test",
         "ATDD"
     ],
-    "version": "0.1.0",
+    "version": "0.9.0",
     "preferGlobal": false,
     "homepage": "https://github.com/comick/node-robotremoteserver",
     "author": {
@@ -34,7 +34,9 @@
     },
     "main": "./lib/robotremote.js",
     "dependencies": {
-        "xmlrpc": ">=1.0.2"
+        "xmlrpc": ">=1.0.2",
+        "promised-io": ">=0.3.4",
+        "is-promise": ">=1.0.0"
     },
     "scripts": {
         "test": "pybot test"
