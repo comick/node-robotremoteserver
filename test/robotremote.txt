@@ -1,0 +1,26 @@
+*** Settings ***
+
+Library    Process
+Library    String
+
+*** Variables ***
+
+${HOST}    localhost
+${PORT}    8270
+
+*** Test Cases ***
+
+Start Remote Server
+    Start Process    node    ./test/robotremotelibrary.js
+    Import Library    Remote    http://localhost:${PORT}
+
+Run Synchronous Keyword Without Return Value And No Arguments
+    ${result}=    Synchronous Keyword Without Return Value And No Arguments
+    Should Be Equal    ${result}    ${EMPTY}
+
+Shutdown Remote Server
+    Stop Remote Server
+    Wait For Process    timeout=10secs
+    Process Should Be Stopped
+
+
