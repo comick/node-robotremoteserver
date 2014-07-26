@@ -5,6 +5,4 @@ node_js:
   - "0.8"
   - "0.6"
 install:
-  - npm install
-  - node ./test/testlibrary.js localhost 8765 &
   - sudo pip install robotframework
