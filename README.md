@@ -3,6 +3,8 @@
 [![NPM](https://nodei.co/npm/robotremote.png?downloads=true&stars=true)](https://nodei.co/npm/robotremote/)
 [![NPM](https://nodei.co/npm-dl/robotremote.png?months=6)](https://nodei.co/npm/robotremote/)
 
+[![Build Status](https://travis-ci.org/comick/node-robotremoteserver.svg?branch=master)](https://travis-ci.org/comick/node-robotremoteserver)
+
   A node.js module providing the [robot framework](http://www.robotframework.org) remote library interface.
   Also provide convenient remote library interface client.
 
