@@ -5,7 +5,15 @@ var fs = require('promised-io/fs'),
 
 var lib = module.exports;
 
-lib.synchronousKeywordWithoutReturnValueAndNoArguments = function () {
+lib.doNothing = function () {
+};
+
+lib.concatenateArguments = function (arg1, arg2) {
+    return arg1 + arg2;
+};
+
+lib.justFail = function () {
+    assert.equal(false, true);
 };
 
 // Run this keyword library if the library itself is called explicitly.
