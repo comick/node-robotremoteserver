@@ -27,6 +27,17 @@ Run Synchronous Keyword With Return Value And Multiple Arguments
 Ryn Synchronous Failing Keyword
     Run Keyword And Expect Error    AssertionError: false == true    Just Fail
 
+Run Asynchronous Keyword Without Return Value And No Arguments
+    ${result}=    Do Nothing Async
+    Should Be Equal    ${result}    ${EMPTY}
+
+Run Asynchronous Keyword With Return Value And Multiple Arguments
+    ${result}=    Concatenate Arguments Async    Bau    Miao
+    Should Be Equal    ${result}    BauMiao
+
+Ryn Asynchronous Failing Keyword
+    Run Keyword And Expect Error    AssertionError: false == true    Just Fail Async
+
 Shutdown Remote Server
     Stop Remote Server
 

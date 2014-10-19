@@ -14,7 +14,7 @@
         "test",
         "ATDD"
     ],
-    "version": "0.9.3",
+    "version": "0.9.4",
     "preferGlobal": false,
     "homepage": "https://github.com/comick/node-robotremoteserver",
     "author": {
@@ -37,6 +37,9 @@
     "dependencies": {
         "xmlrpc": ">=1.0.2",
         "is-promise": ">=1.0.0"
+    },
+    "devDependencies": {
+        "promise": ">=6.0.1"
     },
     "optionalDependencies": {
         "promised-io": ">=0.3.4"

@@ -1,6 +1,7 @@
 'use strict';
 
-var assert = require('assert');
+var assert = require('assert'),
+    Promise = require('promise');
 
 var lib = module.exports;
 
@@ -13,6 +14,28 @@ lib.concatenateArguments = function (arg1, arg2) {
 
 lib.justFail = function () {
     assert.equal(false, true);
+};
+
+lib.doNothingAsync = function () {
+    return new Promise(function (resolve, reject) {
+        resolve();
+    });
+};
+
+lib.concatenateArgumentsAsync = function (arg1, arg2) {
+    return new Promise(function (resolve, reject) {
+        resolve(arg1 + arg2);
+    });
+};
+
+lib.justFailAsync = function () {
+    return new Promise(function (resolve, reject) {
+        try {
+            assert.equal(false, true);
+        } catch (e) {
+            reject(e);
+        }
+    });
 };
 
 // Run this keyword library if the library itself is called explicitly.
