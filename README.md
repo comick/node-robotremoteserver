@@ -22,6 +22,7 @@ examplelibrary.js:
 'use strict';
 
 var fs = require('promised-io/fs'),
+    robot = require('../lib/robotremote'),
     assert = require('assert');
 
 var lib = module.exports;
@@ -59,19 +60,23 @@ lib.countItemsInDirectory.doc = 'Returns the number of items in the directory sp
  *
  * While any thrown `Error` instance will lead the keyword failure.
  *
+ * Each keyword also have the output writer, which enables logging at various levels.
+ * Here warn level is showed as an example.
+ * All robot levels are supported including messages with timestamp through timestamp`Level` function.
+ * See http://robotframework.googlecode.com/hg/doc/userguide/RobotFrameworkUserGuide.html?r=2.8.5#logging-information
+ *
  * @param str1
  * @param str2
  */
 lib.stringsShouldBeEqual = function (str1, str2) {
-    console.log('Comparing \'%s\' to \'%s\'', str1, str2);
+    this.output.warn('Comparing \'%s\' to \'%s\'', str1, str2);
     assert.equal(str1, str2, 'Given strings are not equal');
 };
 
 
 // Run this keyword library if the library itself is called explicitly.
 if (!module.parent) {
-    var robot = require('../lib/robotremote');
-    var server = new robot.Server([lib], { host: 'localhost', port: 8270, allowStop: true });
+    var server = new robot.Server([lib], { host: 'localhost', port: 8270 });
 }
 ```
 
@@ -94,7 +99,7 @@ Count Items in Directory
 
 Failing Example
     Strings Should Be Equal    Hello    Hello
-    Strings Should Be Equal    not      equal*** Settings ***
+    Strings Should Be Equal    not      equal
 ```
 
 Run the remote server:

@@ -12,6 +12,7 @@ ${PORT}    8270
 
 Start Remote Server
     ${remote}=    Start Process    node    ./test/testlibrary.js    ${HOST}    ${PORT}
+    Sleep    1s
     Process Should Be Running    ${remote}
     Import Library    Remote    http://${HOST}:${PORT}
 
@@ -28,7 +29,5 @@ Ryn Synchronous Failing Keyword
 
 Shutdown Remote Server
     Stop Remote Server
-    Wait For Process    timeout=10secs
-    Process Should Be Stopped
 
 

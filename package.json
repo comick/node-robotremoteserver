@@ -14,7 +14,7 @@
         "test",
         "ATDD"
     ],
-    "version": "0.9.2",
+    "version": "0.9.3",
     "preferGlobal": false,
     "homepage": "https://github.com/comick/node-robotremoteserver",
     "author": {
@@ -53,6 +53,5 @@
             "type": "MIT",
             "url": "https://github.com/comick/node-robotremoteserver/raw/master/LICENSE"
         }
-    ],
-    "optionalDependencies": {}
+    ]
 }
