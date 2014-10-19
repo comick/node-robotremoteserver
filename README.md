@@ -115,7 +115,10 @@ Then launch tests:
 The client is useful for testing keywords from the REPL:
 
 ```js
-> var lib = new require('./lib/robotremote').Client({ host: 'localhost', port: 8270 })
+> var robotremote = require('./lib/robotremote')
+undefined
+> var lib = new robotremote.Client({ host: 'localhost', port: 8270 })
+undefined
 > lib.stringsShouldBeEqual
 { [Function]
   args: [ 'str1', 'str2' ],
@@ -126,19 +129,15 @@ The client is useful for testing keywords from the REPL:
   docs: 'Returns the number of items in the directory specified by `path`.' }
 > lib.countItemsInDirectory(process.cwd(), function(e, v) { console.log(v) })
 undefined
-> { status: 'PASS',
-  output: '',
-  traceback: '',
-  return: 14,
-  error: '' }
+> { output: '', status: 'PASS', return: 16 }
 > lib.stringsShouldBeEqual('bau', 'miao', function(e, v) { console.log(v) })
 undefined
-> { status: 'FAIL',
-  output: '',
-  traceback: 'AssertionError: Given strings are not equal\n    at Server.lib.stringsShouldBeEqual (/home/michele/sviluppo/node-robotremoteserver/example/examplelibrary.js:46:12)\n    at Server.runKeyword (/home/michele/sviluppo/node-robotremoteserver/lib/robotremote.js:112:26)\n    at Server.<anonymous> (/home/michele/sviluppo/node-robotremoteserver/lib/robotremote.js:43:21)\n    at Server.EventEmitter.emit (events.js:106:17)\n    at /home/michele/sviluppo/node-robotremoteserver/node_modules/xmlrpc/lib/server.js:42:14\n    at callback (/home/michele/sviluppo/node-robotremoteserver/node_modules/xmlrpc/lib/deserializer.js:65:7)\n    at Deserializer.onDone (/home/michele/sviluppo/node-robotremoteserver/node_modules/xmlrpc/lib/deserializer.js:92:12)\n    at SAXStream.EventEmitter.emit (events.js:92:17)\n    at Object.SAXStream._parser.onend (/home/michele/sviluppo/node-robotremoteserver/node_modules/xmlrpc/node_modules/sax/lib/sax.js:171:8)\n    at emit (/home/michele/sviluppo/node-robotremoteserver/node_modules/xmlrpc/node_modules/sax/lib/sax.js:325:33)',
-  return: '',
-  error: 'AssertionError: Given strings are not equal' }
->
+> { output: '*WARN* Comparing \'bau\' to \'miao\'\n',
+  traceback: 'AssertionError: Given strings are not equal\n    at Function.lib.stringsShouldBeEqual (/home/michele/sviluppo/node-robotremoteserver/example/examplelibrary.js:52:12)\n    at Server.runKeyword (/home/michele/sviluppo/node-robotremoteserver/lib/robotremote.js:130:26)\n    at Server.<anonymous> (/home/michele/sviluppo/node-robotremoteserver/lib/robotremote.js:47:21)\n    at Server.emit (events.js:106:17)\n    at /home/michele/sviluppo/node-robotremoteserver/node_modules/xmlrpc/lib/server.js:42:14\n    at callback (/home/michele/sviluppo/node-robotremoteserver/node_modules/xmlrpc/lib/deserializer.js:65:7)\n    at Deserializer.onDone (/home/michele/sviluppo/node-robotremoteserver/node_modules/xmlrpc/lib/deserializer.js:92:12)\n    at SAXStream.emit (events.js:92:17)\n    at Object.SAXStream._parser.onend (/home/michele/sviluppo/node-robotremoteserver/node_modules/xmlrpc/node_modules/sax/lib/sax.js:171:8)\n    at emit (/home/michele/sviluppo/node-robotremoteserver/node_modules/xmlrpc/node_modules/sax/lib/sax.js:325:33)',
+  status: 'FAIL',
+  error: 'AssertionError: Given strings are not equal',
+  contibuable: false,
+  fatal: false }
 ```
 
 ## License

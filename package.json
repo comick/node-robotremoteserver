@@ -14,7 +14,7 @@
         "test",
         "ATDD"
     ],
-    "version": "0.9.4",
+    "version": "0.9.5",
     "preferGlobal": false,
     "homepage": "https://github.com/comick/node-robotremoteserver",
     "author": {
@@ -45,7 +45,7 @@
         "promised-io": ">=0.3.4"
     },
     "scripts": {
-        "test": "pybot test"
+        "test": "mocha && pybot test"
     },
     "engines": {
         "node": ">=0.6",
