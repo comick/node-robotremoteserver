@@ -110,36 +110,6 @@ Then launch tests:
 
     $ pybot example/remote_tests.txt
 
-## Using the client
-
-The client is useful for testing keywords from the REPL:
-
-```js
-> var robotremote = require('./lib/robotremote')
-undefined
-> var lib = new robotremote.Client({ host: 'localhost', port: 8270 })
-undefined
-> lib.stringsShouldBeEqual
-{ [Function]
-  args: [ 'str1', 'str2' ],
-  docs: '' }
-> lib.countItemsInDirectory
-{ [Function]
-  args: [ 'path' ],
-  docs: 'Returns the number of items in the directory specified by `path`.' }
-> lib.countItemsInDirectory(process.cwd(), function(e, v) { console.log(v) })
-undefined
-> { output: '', status: 'PASS', return: 16 }
-> lib.stringsShouldBeEqual('bau', 'miao', function(e, v) { console.log(v) })
-undefined
-> { output: '*WARN* Comparing \'bau\' to \'miao\'\n',
-  traceback: 'AssertionError: Given strings are not equal\n    at Function.lib.stringsShouldBeEqual (/home/michele/sviluppo/node-robotremoteserver/example/examplelibrary.js:52:12)\n    at Server.runKeyword (/home/michele/sviluppo/node-robotremoteserver/lib/robotremote.js:130:26)\n    at Server.<anonymous> (/home/michele/sviluppo/node-robotremoteserver/lib/robotremote.js:47:21)\n    at Server.emit (events.js:106:17)\n    at /home/michele/sviluppo/node-robotremoteserver/node_modules/xmlrpc/lib/server.js:42:14\n    at callback (/home/michele/sviluppo/node-robotremoteserver/node_modules/xmlrpc/lib/deserializer.js:65:7)\n    at Deserializer.onDone (/home/michele/sviluppo/node-robotremoteserver/node_modules/xmlrpc/lib/deserializer.js:92:12)\n    at SAXStream.emit (events.js:92:17)\n    at Object.SAXStream._parser.onend (/home/michele/sviluppo/node-robotremoteserver/node_modules/xmlrpc/node_modules/sax/lib/sax.js:171:8)\n    at emit (/home/michele/sviluppo/node-robotremoteserver/node_modules/xmlrpc/node_modules/sax/lib/sax.js:325:33)',
-  status: 'FAIL',
-  error: 'AssertionError: Given strings are not equal',
-  contibuable: false,
-  fatal: false }
-```
-
 ## License
 
 Copyright (c) 2013, 2014 Michele Comignano <comick@gmail.com>

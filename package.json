@@ -31,7 +31,8 @@
     },
     "directories": {
         "lib": "./lib",
-        "example": "./example"
+        "example": "./example",
+        "bin": "./bin"
     },
     "main": "./lib/robotremote.js",
     "dependencies": {
