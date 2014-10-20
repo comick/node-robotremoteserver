@@ -110,6 +110,34 @@ Then launch tests:
 
     $ pybot example/remote_tests.txt
 
+## Using botclient.js:
+
+The botclient.js command line utility can be useful to test keywords of any compliant running robot remote server.
+
+An example session with the example keywords library follows:
+
+```js
+$ node ./bin/botclient.js localhost 8270
+Connected to remote server at "localhost:8270"
+Available keywords: stopRemoteServer, countItemsInDirectory, stringsShouldBeEqual
+localhost:8270> keywords.countItemsInDirectory
+{ [Function]
+  args: [ 'path' ],
+  docs: 'Returns the number of items in the directory specified by `path`.' }
+localhost:8270> keywords.stringsShouldBeEqual
+{ [Function]
+  args: [ 'str1', 'str2' ],
+  docs: '' }
+localhost:8270> keywords.stringsShouldBeEqual('ciao', 'ciao').done(console.log)
+undefined
+localhost:8270> { output: '*WARN* Comparing \'ciao\' to \'ciao\'\n',
+  status: 'PASS',
+  return: '' }
+```
+
+Keywords are available in context in the keywords dictionary. When called they return an A+ promise.
+
+
 ## License
 
 Copyright (c) 2013, 2014 Michele Comignano <comick@gmail.com>
