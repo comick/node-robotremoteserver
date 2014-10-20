@@ -16,6 +16,8 @@ Install [robot framework](http://code.google.com/p/robotframework/wiki/Installat
 
 ## Example
 
+Just little example with main features. Test folder contains better extensive examples for more features.
+
 examplelibrary.js:
 
 ```js
