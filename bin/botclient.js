@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 'use strict';
 
 var robot = require('../lib/robotremote'),
