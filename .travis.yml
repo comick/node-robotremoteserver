@@ -1,5 +1,8 @@
+env:
+  - ROBOT_VERSION=2.8.4
+  - ROBOT_VERSION=2.8.3
 before_script:
-  - sudo pip install robotframework
+  - sudo pip install robotframework==$ROBOT_VERSION
 language: node_js
 node_js:
   - "0.11"
