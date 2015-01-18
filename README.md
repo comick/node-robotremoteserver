@@ -82,7 +82,7 @@ if (!module.parent) {
 }
 ```
 
-remote_tests.txt:
+remote_tests.robot:
 
 ```
 *** Settings ***
@@ -110,7 +110,7 @@ Run the remote server:
 
 Then launch tests:
 
-    $ pybot example/remote_tests.txt
+    $ pybot example/remote_tests.robot
 
 ## Using botclient.js:
 

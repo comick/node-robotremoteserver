@@ -38,9 +38,14 @@ lib.justFailAsync = function () {
     });
 };
 
+lib.neverReturn = function () {
+    return new Promise(function (resolve, reject) {
+    });
+};
+
 // Run this keyword library if the library itself is called explicitly.
 if (!module.parent) {
     var robot = require('../lib/robotremote');
-    var options = { host: process.argv[2], port: parseInt(process.argv[3], 10), allowStop: true };
+    var options = { host: process.argv[2], port: parseInt(process.argv[3], 10), timeout: 2000, allowStop: true };
     var server = new robot.Server([lib], options);
 }

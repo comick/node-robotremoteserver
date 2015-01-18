@@ -24,7 +24,7 @@ Run Synchronous Keyword With Return Value And Multiple Arguments
     ${result}=    Concatenate Arguments    Bau    Miao
     Should Be Equal    ${result}    BauMiao
 
-Ryn Synchronous Failing Keyword
+Run Synchronous Failing Keyword
     Run Keyword And Expect Error    AssertionError: false == true    Just Fail
 
 Run Asynchronous Keyword Without Return Value And No Arguments
@@ -37,6 +37,9 @@ Run Asynchronous Keyword With Return Value And Multiple Arguments
 
 Run Asynchronous Failing Keyword
     Run Keyword And Expect Error    AssertionError: false == true    Just Fail Async
+
+Never Returning Keyword Should Fail After Timeout
+    Run Keyword And Expect Error    Error: Keyword execution got timeout    Never Return
 
 Shutdown Remote Server
     Stop Remote Server
