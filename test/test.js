@@ -79,7 +79,7 @@ describe('Robot Remote Library', function () {
             );
         });
     });
-    it('keyword should output continuable and fatal as for error', function (done) {
+    it('should output continuable and fatal as for failing keyword error', function (done) {
         var serverPort = nextPort();
         var lib = {
             testKeyword: function () {
@@ -97,6 +97,30 @@ describe('Robot Remote Library', function () {
                         assert.equal(true, err.fatal);
                         done();
                     });
+                }, done
+            );
+        });
+    });
+    it('should load keywords from all libraries', function (done) {
+        var serverPort = nextPort();
+        var lib1 = {
+            testKeywordFromLib1: function () {
+                return true;
+            }
+        };
+        var lib2 = {
+            testKeywordFromLib2: function () {
+                return true;
+            }
+        };
+        var server = new robot.Server([lib1, lib2], {host: 'localhost', port: serverPort, allowStop: true}, function () {
+            robot.createClient({host: 'localhost', port: serverPort}).done(
+                function (val) {
+                    val.testKeywordFromLib1().done(function () {
+                    }, done);
+                    val.testKeywordFromLib2().done(function (val) {
+                        done();
+                    }, done);
                 }, done
             );
         });
