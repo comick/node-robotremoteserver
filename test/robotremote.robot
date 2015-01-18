@@ -35,7 +35,7 @@ Run Asynchronous Keyword With Return Value And Multiple Arguments
     ${result}=    Concatenate Arguments Async    Bau    Miao
     Should Be Equal    ${result}    BauMiao
 
-Ryn Asynchronous Failing Keyword
+Run Asynchronous Failing Keyword
     Run Keyword And Expect Error    AssertionError: false == true    Just Fail Async
 
 Shutdown Remote Server

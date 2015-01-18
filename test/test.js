@@ -7,10 +7,10 @@ var assert = require('assert'),
 function keywordsEqual(keywords1, keywords2) {
     assert.deepEqual(Object.keys(keywords1), Object.keys(keywords2));
 }
-var port = 12345;
 function nextPort() {
-    return ++port;
+    return nextPort.port++;
 }
+nextPort.port = 12345;
 
 describe('Robot Remote Library', function () {
     it('client should fail to start if server is not running', function (done) {
@@ -23,9 +23,10 @@ describe('Robot Remote Library', function () {
             }
         );
     });
-    it('client should succeed to start if server is running and list all keywords', function (done) {
-        var server = new robot.Server([testLibrary], {host: 'localhost', port: nextPort(), allowStop: true}, function () {
-            robot.createClient({host: 'localhost', port: port}).done(
+    it('client should start and list all keywords when server is running', function (done) {
+        var serverPort = nextPort();
+        var server = new robot.Server([testLibrary], {host: 'localhost', port: serverPort, allowStop: true}, function () {
+            robot.createClient({host: 'localhost', port: serverPort}).done(
                 function (val) {
                     keywordsEqual(val, server.keywords);
                     done();
@@ -33,7 +34,9 @@ describe('Robot Remote Library', function () {
             );
         });
     });
-    it('client should call remote keyword', function (done) {
+    it('keyword should run when called by a client', function (done) {
+        var serverPort = nextPort();
+
         function testKeyword(p1) {
             done();
         }
@@ -41,8 +44,8 @@ describe('Robot Remote Library', function () {
         var libraries = [
             {testKeyword: testKeyword}
         ];
-        var server = new robot.Server(libraries, {host: 'localhost', port: nextPort(), allowStop: true}, function () {
-            robot.createClient({host: 'localhost', port: port}).done(
+        var server = new robot.Server(libraries, {host: 'localhost', port: serverPort, allowStop: true}, function () {
+            robot.createClient({host: 'localhost', port: serverPort}).done(
                 function (clientKeywords) {
                     clientKeywords.testKeyword('param').done(function (val) {
                     });
@@ -51,6 +54,7 @@ describe('Robot Remote Library', function () {
         });
     });
     it('keyword should output correctly', function (done) {
+        var serverPort = nextPort();
         var lib = {
             testKeyword: function (p1) {
                 this.output.warn('message');
@@ -61,8 +65,8 @@ describe('Robot Remote Library', function () {
                 return p1;
             }
         };
-        var server = new robot.Server([lib], {host: 'localhost', port: nextPort(), allowStop: true}, function () {
-            robot.createClient({host: 'localhost', port: port}).done(
+        var server = new robot.Server([lib], {host: 'localhost', port: serverPort, allowStop: true}, function () {
+            robot.createClient({host: 'localhost', port: serverPort}).done(
                 function (val) {
                     val.testKeyword('param').done(function (res) {
                         assert.deepEqual(res, {
@@ -76,6 +80,7 @@ describe('Robot Remote Library', function () {
         });
     });
     it('keyword should output continuable and fatal as for error', function (done) {
+        var serverPort = nextPort();
         var lib = {
             testKeyword: function () {
                 var err = new Error();
@@ -84,8 +89,8 @@ describe('Robot Remote Library', function () {
                 throw err;
             }
         };
-        var server = new robot.Server([lib], {host: 'localhost', port: nextPort(), allowStop: true}, function () {
-            robot.createClient({host: 'localhost', port: port}).done(
+        var server = new robot.Server([lib], {host: 'localhost', port: serverPort, allowStop: true}, function () {
+            robot.createClient({host: 'localhost', port: serverPort}).done(
                 function (val) {
                     val.testKeyword().done(done, function (err) {
                         assert.equal(true, err.continuable);
