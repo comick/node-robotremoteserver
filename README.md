@@ -23,7 +23,7 @@ examplelibrary.js:
 ```js
 'use strict';
 
-var fs = require('promised-io/fs'),
+var readdir = require('promise').denodeify(require('fs').readdir),
     robot = require('../lib/robotremote'),
     assert = require('assert');
 
@@ -42,9 +42,9 @@ var lib = module.exports;
  *
  * @param path directory path to count item in.
  */
-lib.countItemsInDirectory = function (path) {
-    return fs.readdir(path).then(function (items) {
-        return items.length;
+ lib.countItemsInDirectory = function (path) {
+    return readdir(path).then(function (files) {
+        return files.length;
     });
 };
 // The doc attribute is used for inspection on the command line of client and doc generation.
