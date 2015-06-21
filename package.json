@@ -47,7 +47,7 @@
         "test": "mocha && pybot test"
     },
     "engines": {
-        "node": ">=0.8",
+        "node": ">=0.10",
         "npm": ">=1.0.0"
     },
     "licenses": [
