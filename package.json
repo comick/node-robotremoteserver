@@ -14,7 +14,7 @@
         "test",
         "ATDD"
     ],
-    "version": "1.0.5",
+    "version": "1.0.6",
     "preferGlobal": false,
     "homepage": "https://github.com/comick/node-robotremoteserver",
     "author": {
