@@ -1,6 +1,7 @@
 'use strict';
 
 var assert = require('assert'),
+    util = require('util'),
     robot = require('../lib/robotremote'),
     testLibrary = require('./testlibrary');
 
@@ -55,13 +56,14 @@ describe('Robot Remote Library', function () {
     });
     it('keyword should output correctly', function (done) {
         var serverPort = nextPort();
+        var twarn, ttrace, tdebug, tinfo, thtml;
         var lib = {
             testKeyword: function (p1) {
-                this.output.warn('message');
-                this.output.trace('message');
-                this.output.debug('message');
-                this.output.info('message');
-                this.output.html('message');
+                twarn = this.output.warn('message');
+                ttrace = this.output.trace('message');
+                tdebug = this.output.debug('message');
+                tinfo = this.output.info('message');
+                thtml = this.output.html('message');
                 return p1;
             }
         };
@@ -70,7 +72,7 @@ describe('Robot Remote Library', function () {
                 function (val) {
                     val.testKeyword('param').done(function (res) {
                         assert.deepEqual(res, {
-                            output: '*WARN* message\n*TRACE* message\n*DEBUG* message\n*INFO* message\n*HTML* message\n',
+                            output: util.format('*WARN:%d* message\n*TRACE:%d* message\n*DEBUG:%d* message\n*INFO:%d* message\n*HTML:%d* message\n', twarn, ttrace, tdebug, tinfo, thtml),
                             status: 'PASS',
                             return: 'param' });
                         done();
