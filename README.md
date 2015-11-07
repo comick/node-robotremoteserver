@@ -142,7 +142,7 @@ Keywords are available in context in the keywords dictionary. When called they r
 
 ## License
 
-Copyright (c) 2013, 2014 Michele Comignano <comick@gmail.com>
+Copyright (c) 2013, 2014, 2015 Michele Comignano <comick@gmail.com>
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
