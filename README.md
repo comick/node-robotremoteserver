@@ -10,7 +10,7 @@
 
 ## Installation
 
-Install [robot framework](http://code.google.com/p/robotframework/wiki/Installation) first. Then:
+Install [robot framework](https://github.com/robotframework/robotframework/blob/master/INSTALL.rst) first. Then:
 
     $ npm install robotremote
 
@@ -65,7 +65,7 @@ lib.countItemsInDirectory.doc = 'Returns the number of items in the directory sp
  * Each keyword also have the output writer, which enables logging at various levels.
  * Here warn level is showed as an example.
  * All robot levels are supported including messages with timestamp through timestamp`Level` function.
- * See http://robotframework.googlecode.com/hg/doc/userguide/RobotFrameworkUserGuide.html?r=2.8.5#logging-information
+ * See http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#logging-information
  *
  * @param str1
  * @param str2

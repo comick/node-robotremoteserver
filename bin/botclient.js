@@ -5,7 +5,7 @@ var robot = require('../lib/robotremote'),
     repl = require('repl');
 
 
-var options = {host: process.argv[2], port: parseInt(process.argv[3], 10) };
+var options = {host: process.argv[2] || 'localhost', port: parseInt(process.argv[3], 10) || 8270};
 var serverString = options.host + ':' + options.port;
 
 robot.createClient(options).then(function (keywords) {

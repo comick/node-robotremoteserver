@@ -46,6 +46,6 @@ lib.neverReturn = function () {
 // Run this keyword library if the library itself is called explicitly.
 if (!module.parent) {
     var robot = require('../lib/robotremote');
-    var options = { host: process.argv[2], port: parseInt(process.argv[3], 10), timeout: 2000, allowStop: true };
+    var options = { host: process.argv[2] || 'localhost', port: parseInt(process.argv[3], 10) || 8270, timeout: 2000, allowStop: true };
     var server = new robot.Server([lib], options);
 }
