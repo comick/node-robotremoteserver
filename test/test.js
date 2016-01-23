@@ -3,7 +3,9 @@
 var assert = require('assert'),
     util = require('util'),
     robot = require('../lib/robotremote'),
-    testLibrary = require('./testlibrary');
+    testLibrary = require('./testlibrary'),
+    describe = require('mocha').describe,
+    it = require('mocha').it;
 
 function keywordsEqual(keywords1, keywords2) {
     assert.deepEqual(Object.keys(keywords1), Object.keys(keywords2));
