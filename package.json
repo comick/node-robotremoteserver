@@ -5,16 +5,13 @@
         "robotframework",
         "robot framework",
         "robot",
-        "framework",
-        "remote",
-        "server",
-        "client",
+        "remote server",
         "acceptance",
         "testing",
         "test",
         "ATDD"
     ],
-    "version": "1.1.2",
+    "version": "1.2.0",
     "preferGlobal": false,
     "homepage": "https://github.com/comick/node-robotremoteserver",
     "author": {
@@ -37,11 +34,10 @@
     "main": "./lib/robotremote.js",
     "dependencies": {
         "xmlrpc": ">=1.3.1",
-        "promise": ">=7.1.1",
-        "is-promise": ">=2.1.0"
+        "promise": ">=7.1.1"
     },
     "devDependencies": {
-        "mocha": ">=2.3.4"
+        "mocha": ">=2.3.5"
     },
     "scripts": {
         "test": "mocha && pybot test"
