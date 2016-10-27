@@ -1,21 +1,18 @@
+os:
+  - linux
+  - osx
 env:
   - ROBOT_VERSION=3.0
   - ROBOT_VERSION=2.9.2
-  - ROBOT_VERSION=2.9.1
-  - ROBOT_VERSION=2.9
   - ROBOT_VERSION=2.8.7
-  - ROBOT_VERSION=2.8.6
-  - ROBOT_VERSION=2.8.5
-  - ROBOT_VERSION=2.8.4
-  - ROBOT_VERSION=2.8.3
-  - ROBOT_VERSION=2.8.2
 before_script:
   - sudo pip install robotframework==$ROBOT_VERSION
 language: node_js
 node_js:
-  - "5.5"
-  - "4.2"
-  - "4.0"
+  - "node"
+  - "6"
+  - "5"
+  - "4"
   - "0.12"
   - "0.11"
   - "0.10"
