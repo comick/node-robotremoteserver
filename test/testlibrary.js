@@ -7,6 +7,7 @@ var lib = module.exports;
 
 lib.doNothing = function () {
 };
+lib.doNothing.tags = ["tag1", "tag2"];
 
 lib.concatenateArguments = function (arg1, arg2) {
     return arg1 + arg2;
