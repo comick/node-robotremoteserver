@@ -25,7 +25,7 @@ Run Synchronous Keyword With Return Value And Multiple Arguments
     Should Be Equal    ${result}    BauMiao
 
 Run Synchronous Failing Keyword
-    Run Keyword And Expect Error    AssertionError: just failed    Just Fail
+    Run Keyword And Expect Error    Error    Just Fail
 
 Run Asynchronous Keyword Without Return Value And No Arguments
     ${result}=    Do Nothing Async
@@ -36,7 +36,7 @@ Run Asynchronous Keyword With Return Value And Multiple Arguments
     Should Be Equal    ${result}    BauMiao
 
 Run Asynchronous Failing Keyword
-    Run Keyword And Expect Error    AssertionError: just failed    Just Fail Async
+    Run Keyword And Expect Error    Error    Just Fail Async
 
 Never Returning Keyword Should Fail After Timeout
     Run Keyword And Expect Error    Error: Keyword execution got timeout    Never Return

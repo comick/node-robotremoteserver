@@ -14,7 +14,7 @@ lib.concatenateArguments = function (arg1, arg2) {
 };
 
 lib.justFail = function () {
-    assert.equal(false, true, 'just failed');
+    throw new Error();
 };
 
 lib.doNothingAsync = function () {
@@ -31,11 +31,7 @@ lib.concatenateArgumentsAsync = function (arg1, arg2) {
 
 lib.justFailAsync = function () {
     return new Promise(function (resolve, reject) {
-        try {
-            assert.equal(false, true, 'just failed');
-        } catch (e) {
-            reject(e);
-        }
+        reject(new Error());
     });
 };
 
