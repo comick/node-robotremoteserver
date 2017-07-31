@@ -19,7 +19,7 @@ export declare interface RemoteServerOptions {
 }
 
 /**
- * An Robot Framework remote server implementation
+ * A Robot Framework remote server implementation
  * @param Array of libraries containing Robot Framework keyword implementations
  * @param options: Options for setting up the xmlrpc server
  * @param listeningCallback Callback function that will be passed to the httpServer.listen method (from https module)
