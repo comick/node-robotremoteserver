@@ -1,5 +1,5 @@
 export declare interface RobotKeyword {
-  (source: string, subString: string): boolean;
+  (...any): any;
 
   doc?: string;
   tags?: string[];
