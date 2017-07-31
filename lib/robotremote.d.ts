@@ -1,21 +1,21 @@
 export declare interface RobotKeyword {
-  (...any): any;
+    (...any): any;
 
-  doc?: string;
-  tags?: string[];
-  args?: string[];
+    doc?: string;
+    tags?: string[];
+    args?: string[];
 }
 
 export declare interface KeywordLibrary {
-  [index: string]: RobotKeyword;
+    [index: string]: RobotKeyword;
 }
 
 export declare interface RemoteServerOptions {
-  host?: string;
-  port?: number;
-  allowStop?: boolean;
-  timeout?: string;
-  cookies?: boolean; // if true then cookies returned by server will be stored and sent back on the next calls.
+    host?: string;
+    port?: number;
+    allowStop?: boolean;
+    timeout?: string;
+    cookies?: boolean; // if true then cookies returned by server will be stored and sent back on the next calls.
 }
 
 /**
@@ -25,6 +25,6 @@ export declare interface RemoteServerOptions {
  * @param listeningCallback Callback function that will be passed to the httpServer.listen method (from https module)
  */
 export declare class Server {
-  constructor(libraries: KeywordLibrary[], options: RemoteServerOptions, listeningCallback?: Function);
-  stopRemoteServer(): boolean | Error;
+    constructor(libraries:KeywordLibrary[], options:RemoteServerOptions, listeningCallback?:Function);
+    stopRemoteServer():boolean | Error;
 }
