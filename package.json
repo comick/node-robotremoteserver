@@ -51,5 +51,6 @@
             "type": "MIT",
             "url": "https://github.com/comick/node-robotremoteserver/raw/master/LICENSE"
         }
-    ]
+    ],
+    "typings": "lib/robotremote.d.ts"
 }
