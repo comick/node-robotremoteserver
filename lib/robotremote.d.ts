@@ -14,7 +14,7 @@ export declare interface RemoteServerOptions {
   host?: string;
   port?: number;
   allowStop?: boolean;
-  timeout?: number;
+  timeout?: string;
   cookies?: boolean; // if true then cookies returned by server will be stored and sent back on the next calls.
 }
 
