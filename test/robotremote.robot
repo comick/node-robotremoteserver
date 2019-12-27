@@ -3,7 +3,7 @@
 Library    Process
 Library    String
 Suite Setup    Start Remote Server
-Suite Teardown    Stop Remote Server
+Suite Teardown    Collect Logs and Stop Server
 
 *** Variables ***
 
@@ -11,7 +11,6 @@ ${HOST}    localhost
 ${PORT}    8270
 
 *** Test Cases ***
-
 Run Synchronous Keyword Without Return Value And No Arguments
     ${result}=    Do Nothing
     Should Be Equal    ${result}    ${EMPTY}
@@ -61,11 +60,21 @@ Run Asynchronous Failing Keyword
 Never Returning Keyword Should Fail After Timeout
     Run Keyword And Expect Error    Error: Keyword execution got timeout    Never Return
 
+Generate Documentation
+    Run Process    python    -m    robot.libdoc    Remote::http://${HOST}:${PORT}    example.html
+    Process Should Be Running
+
 *** Keywords ***
 
 Start Remote Server
     ${remote}=    Start Process    node    ./test/testlibrary.js    ${HOST}    ${PORT}
     Sleep    1s
-    Process Should Be Running    ${remote}
+    Process Should Be Running
     Import Library    Remote    http://${HOST}:${PORT}
 
+Collect Logs and Stop Server
+    Run Keyword And Ignore Error    Stop Remote Server
+    Wait For Process
+    ${result}    Get Process Result
+    Log    ${result.stdout}
+    Log    ${result.stderr}
