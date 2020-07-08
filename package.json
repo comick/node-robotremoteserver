@@ -40,7 +40,7 @@
         "mocha": ">=3.4.2"
     },
     "scripts": {
-        "test": "mocha"
+        "test": "mocha && pybot test"
     },
     "engines": {
         "node": ">=0.10",
