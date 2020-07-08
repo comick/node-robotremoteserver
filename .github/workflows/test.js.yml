@@ -29,3 +29,5 @@ jobs:
         npm install
         npm test
         pybot test
+      env:
+        CI: true
