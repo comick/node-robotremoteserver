@@ -27,4 +27,4 @@ jobs:
     - run: |
         sudo pip install robotframework==${{ matrix.robot-version }}
         npm install
-        npm test
+        mocha
