@@ -27,7 +27,6 @@ jobs:
     - run: |
         sudo pip install robotframework==${{ matrix.robot-version }}
         npm install
-        pybot test
     - run: npm test
       env:
         CI: true
