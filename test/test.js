@@ -16,6 +16,13 @@ function nextPort() {
 nextPort.port = 12345;
 
 describe('Robot Remote Library', function () {
+
+    var server;
+
+    afterEach(function () {
+        server && server.stopRemoteServer();
+    });
+
     it('client should fail to start if server is not running', function (done) {
         robot.createClient({host: 'localhost', port: nextPort()}).done(
             function (val) {
@@ -28,7 +35,7 @@ describe('Robot Remote Library', function () {
     });
     it('client should start and list all keywords when server is running', function (done) {
         var serverPort = nextPort();
-        var server = new robot.Server([testLibrary], {host: 'localhost', port: serverPort, allowStop: true}, function () {
+        server = new robot.Server([testLibrary], {host: 'localhost', port: serverPort, allowStop: true}, function () {
             robot.createClient({host: 'localhost', port: serverPort}).done(
                 function (val) {
                     keywordsEqual(val, server.keywords);
@@ -47,7 +54,7 @@ describe('Robot Remote Library', function () {
         var libraries = [
             {testKeyword: testKeyword}
         ];
-        var server = new robot.Server(libraries, {host: 'localhost', port: serverPort, allowStop: true}, function () {
+        server = new robot.Server(libraries, {host: 'localhost', port: serverPort, allowStop: true}, function () {
             robot.createClient({host: 'localhost', port: serverPort}).done(
                 function (clientKeywords) {
                     clientKeywords.testKeyword('param').done(function (val) {
@@ -69,7 +76,7 @@ describe('Robot Remote Library', function () {
                 return p1;
             }
         };
-        var server = new robot.Server([lib], {host: 'localhost', port: serverPort, allowStop: true}, function () {
+        server = new robot.Server([lib], {host: 'localhost', port: serverPort, allowStop: true}, function () {
             robot.createClient({host: 'localhost', port: serverPort}).done(
                 function (val) {
                     val.testKeyword('param').done(function (res) {
@@ -93,7 +100,7 @@ describe('Robot Remote Library', function () {
                 throw err;
             }
         };
-        var server = new robot.Server([lib], {host: 'localhost', port: serverPort, allowStop: true}, function () {
+        server = new robot.Server([lib], {host: 'localhost', port: serverPort, allowStop: true}, function () {
             robot.createClient({host: 'localhost', port: serverPort}).done(
                 function (val) {
                     val.testKeyword().done(done, function (err) {
@@ -117,7 +124,7 @@ describe('Robot Remote Library', function () {
                 return true;
             }
         };
-        var server = new robot.Server([lib1, lib2], {host: 'localhost', port: serverPort, allowStop: true}, function () {
+        server = new robot.Server([lib1, lib2], {host: 'localhost', port: serverPort, allowStop: true}, function () {
             robot.createClient({host: 'localhost', port: serverPort}).done(
                 function (val) {
                     val.testKeywordFromLib1().done(function () {
