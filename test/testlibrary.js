@@ -13,6 +13,10 @@ lib.concatenateArguments = function (arg1, arg2) {
     return arg1 + arg2;
 };
 
+lib.concatenateArgumentsWithCommentsInArgs = function (arg1, arg2 /*, skipped arg */) {
+    return arg1 + arg2;
+};
+
 lib.justFail = function () {
     throw new Error();
 };
