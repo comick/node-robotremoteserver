@@ -24,6 +24,8 @@ describe('Robot Remote Library', function () {
     });
 
     it('client should fail to start if server is not running', function (done) {
+        // In case of slow DNS this will fail after 2000ms
+        this.timeout(5000); 
         robot.createClient({host: 'localhost', port: nextPort()}).done(
             function (val) {
                 throw new Error('client succeeded');
@@ -42,6 +44,14 @@ describe('Robot Remote Library', function () {
                     done();
                 }, done
             );
+        });
+    });
+    it('server should correctly manage keyword arguments', function (done) {
+        var serverPort = nextPort();
+        var server = new robot.Server([testLibrary], {host: 'localhost', port: serverPort, allowStop: true}, function () {
+            assert.deepEqual(server.keywords['concatenateArguments'].args, ['arg1', 'arg2']);
+            assert.deepEqual(server.keywords['concatenateArgumentsWithCommentsInArgs'].args, ['arg1', 'arg2']);
+            done();
         });
     });
     it('keyword should run when called by a client', function (done) {
