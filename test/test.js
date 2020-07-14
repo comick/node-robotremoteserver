@@ -48,7 +48,7 @@ describe('Robot Remote Library', function () {
     });
     it('server should correctly manage keyword arguments', function (done) {
         var serverPort = nextPort();
-        var server = new robot.Server([testLibrary], {host: 'localhost', port: serverPort, allowStop: true}, function () {
+        server = new robot.Server([testLibrary], {host: 'localhost', port: serverPort, allowStop: true}, function () {
             assert.deepEqual(server.keywords['concatenateArguments'].args, ['arg1', 'arg2']);
             assert.deepEqual(server.keywords['concatenateArgumentsWithCommentsInArgs'].args, ['arg1', 'arg2']);
             done();
