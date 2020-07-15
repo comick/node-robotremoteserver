@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        node-version: [10.x, 12.x, 14.x]
         robot-version: [2.8.7, 2.9.2, 3.0.4, 3.2.1]
     steps:
     - uses: actions/checkout@v2
