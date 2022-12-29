@@ -1,8 +1,5 @@
 # robotremote
 
-[![NPM](https://nodei.co/npm/robotremote.png?downloads=true&stars=true)](https://nodei.co/npm/robotremote/)
-[![NPM](https://nodei.co/npm-dl/robotremote.png?months=6)](https://nodei.co/npm/robotremote/)
-
 ![Node Robot Remote Server CI](https://github.com/comick/node-robotremoteserver/workflows/Node%20Robot%20Remote%20Server%20CI/badge.svg)
 
   A node.js module providing the [robot framework](http://www.robotframework.org) remote library interface.
@@ -142,7 +139,7 @@ Keywords are available in context in the keywords dictionary. When called they r
 
 ## License
 
-Copyright (c) 2013-2019 Michele Comignano <comick@gmail.com>
+Copyright (c) 2013-2022 Michele Comignano <mcdev@playlinux.net>
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
