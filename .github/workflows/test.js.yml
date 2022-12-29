@@ -22,12 +22,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }} and Robot Framework ${{ matrix.robot-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-    - run: |
-        sudo pip install robotframework==${{ matrix.robot-version }}
-        npm install
+    - run: sudo pip install robotframework==${{ matrix.robot-version }}
+    - run: npm install
     - run: npm test
       env:
         CI: true
+
