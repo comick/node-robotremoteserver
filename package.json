@@ -11,12 +11,12 @@
         "test",
         "ATDD"
     ],
-    "version": "1.4.0",
+    "version": "1.4.1",
     "preferGlobal": false,
     "homepage": "https://github.com/comick/node-robotremoteserver",
     "author": {
         "name": "Michele Comignano",
-        "email": "comick@gmail.com",
+        "email": "mcdev@playlinux.net",
         "url": "https://github.com/comick"
     },
     "repository": {
