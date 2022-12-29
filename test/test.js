@@ -26,7 +26,7 @@ describe('Robot Remote Library', function () {
     it('client should fail to start if server is not running', function (done) {
         // In case of slow DNS this will fail after 2000ms
         this.timeout(5000); 
-        robot.createClient({host: 'localhost', port: nextPort()}).done(
+        robot.createClient({host: 'localhost', port: nextPort()}).then(
             function (val) {
                 throw new Error('client succeeded');
             },
@@ -38,7 +38,7 @@ describe('Robot Remote Library', function () {
     it('client should start and list all keywords when server is running', function (done) {
         var serverPort = nextPort();
         server = new robot.Server([testLibrary], {host: 'localhost', port: serverPort, allowStop: true}, function () {
-            robot.createClient({host: 'localhost', port: serverPort}).done(
+            robot.createClient({host: 'localhost', port: serverPort}).then(
                 function (val) {
                     keywordsEqual(val, server.keywords);
                     done();
@@ -65,9 +65,9 @@ describe('Robot Remote Library', function () {
             {testKeyword: testKeyword}
         ];
         server = new robot.Server(libraries, {host: 'localhost', port: serverPort, allowStop: true}, function () {
-            robot.createClient({host: 'localhost', port: serverPort}).done(
+            robot.createClient({host: 'localhost', port: serverPort}).then(
                 function (clientKeywords) {
-                    clientKeywords.testKeyword('param').done(function (val) {
+                    clientKeywords.testKeyword('param').then(function (val) {
                     });
                 }, done
             );
@@ -87,9 +87,9 @@ describe('Robot Remote Library', function () {
             }
         };
         server = new robot.Server([lib], {host: 'localhost', port: serverPort, allowStop: true}, function () {
-            robot.createClient({host: 'localhost', port: serverPort}).done(
+            robot.createClient({host: 'localhost', port: serverPort}).then(
                 function (val) {
-                    val.testKeyword('param').done(function (res) {
+                    val.testKeyword('param').then(function (res) {
                         assert.deepEqual(res, {
                             output: util.format('*WARN:%d* message\n*TRACE:%d* message\n*DEBUG:%d* message\n*INFO:%d* message\n*HTML:%d* message\n', twarn, ttrace, tdebug, tinfo, thtml),
                             status: 'PASS',
@@ -111,9 +111,9 @@ describe('Robot Remote Library', function () {
             }
         };
         server = new robot.Server([lib], {host: 'localhost', port: serverPort, allowStop: true}, function () {
-            robot.createClient({host: 'localhost', port: serverPort}).done(
+            robot.createClient({host: 'localhost', port: serverPort}).then(
                 function (val) {
-                    val.testKeyword().done(done, function (err) {
+                    val.testKeyword().then(done, function (err) {
                         assert.equal(true, err.continuable);
                         assert.equal(true, err.fatal);
                         done();
@@ -135,11 +135,11 @@ describe('Robot Remote Library', function () {
             }
         };
         server = new robot.Server([lib1, lib2], {host: 'localhost', port: serverPort, allowStop: true}, function () {
-            robot.createClient({host: 'localhost', port: serverPort}).done(
+            robot.createClient({host: 'localhost', port: serverPort}).then(
                 function (val) {
-                    val.testKeywordFromLib1().done(function () {
+                    val.testKeywordFromLib1().then(function () {
                     }, done);
-                    val.testKeywordFromLib2().done(function (val) {
+                    val.testKeywordFromLib2().then(function (val) {
                         done();
                     }, done);
                 }, done

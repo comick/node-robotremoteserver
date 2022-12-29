@@ -1,7 +1,6 @@
 'use strict';
 
-var assert = require('assert'),
-    Promise = require('promise');
+var assert = require('assert');
 
 var lib = module.exports;
 
