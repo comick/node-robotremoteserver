@@ -1,19 +1,37 @@
 #!/usr/bin/env node
 'use strict';
 
-var robot = require('../lib/robotremote'),
-    repl = require('repl');
+const robot = require('../lib/robotremote');
+const repl = require('repl');
 
+const options = {
+    host: process.argv[2] || 'localhost',
+    port: parseInt(process.argv[3], 10) || 8270
+};
+const serverString = options.host + ':' + options.port;
 
-var options = {host: process.argv[2] || 'localhost', port: parseInt(process.argv[3], 10) || 8270};
-var serverString = options.host + ':' + options.port;
-
-robot.createClient(options).then(keywords -> {
+async function reloadKeywords(serverString) {
+    let keywords = await robot.createClient(options);
     console.log('Connected to remote server at "' + serverString + '"');
     console.log('Available keywords: ' + Object.keys(keywords).join(', '));
-    repl.start(serverString + '> ').context.keywords = keywords;
-}, err -> {
-    console.log('Could not connected to remote server at "' + serverString + '"');
-    throw err;
-});
+    return keywords;
+}
+
+(async () => {
+    try {
+        let keywords = await reloadKeywords(serverString);
+        const replServer = repl.start(serverString + '> ')
+        replServer.context.keywords = keywords;
+        replServer.defineCommand('reload', {
+            help: 'Reload remote keyword definitions',
+            async action() {
+                replServer.context.keywords = await reloadKeywords(serverString);
+                this.displayPrompt();
+            }
+        }); 
+    } catch (err) {
+        console.log('Could not connected to remote server at "' + serverString + '"');
+        throw err;
+    }
+})();
 

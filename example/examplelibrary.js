@@ -1,8 +1,8 @@
 'use strict';
 
-var readdir = require('promise').denodeify(require('fs').readdir),
-    robot = require('../lib/robotremote'),
-    assert = require('assert');
+const { readdir } = require('fs').promises;
+const robot = require('../lib/robotremote');
+const assert = require('assert');
 
 var lib = module.exports;
 
@@ -19,11 +19,9 @@ var lib = module.exports;
  *
  * @param path directory path to count item in.
  */
-lib.countItemsInDirectory = function (path) {
-    return readdir(path).then(function (files) {
-        return files.length;
-    });
-};
+lib.countItemsInDirectory = async function(path) {
+    return (await readdir(path)).length;
+}
 // The doc attribute is used for inspection on the command line of client and doc generation.
 // It's optional and defaults to empty string when missing.
 lib.countItemsInDirectory.doc = 'Returns the number of items in the directory specified by `path`.';
@@ -42,12 +40,12 @@ lib.countItemsInDirectory.doc = 'Returns the number of items in the directory sp
  * Each keyword also have the output writer, which enables logging at various levels.
  * Here warn level is showed as an example.
  * All robot levels are supported including messages with timestamp through timestamp`Level` function.
- * See http://robotframework.googlecode.com/hg/doc/userguide/RobotFrameworkUserGuide.html?r=2.8.5#logging-information
+ * See http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#logging-information
  *
  * @param str1
  * @param str2
  */
-lib.stringsShouldBeEqual = function (str1, str2) {
+lib.stringsShouldBeEqual = (str1, str2) => {
     this.output.warn('Comparing \'%s\' to \'%s\'', str1, str2);
     assert.equal(str1, str2, 'Given strings are not equal');
 };
@@ -55,5 +53,5 @@ lib.stringsShouldBeEqual = function (str1, str2) {
 
 // Run this keyword library if the library itself is called explicitly.
 if (!module.parent) {
-    var server = new robot.Server([lib], { host: 'localhost', port: 8270 });
+    const server = new robot.Server([lib], { host: 'localhost', port: 8270 });
 }
