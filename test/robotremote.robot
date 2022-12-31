@@ -64,7 +64,7 @@ Never Returning Keyword Should Fail After Timeout
 *** Keywords ***
 
 Start Remote Server
-    ${remote}=    Start Process    node    ./test/testlibrary.js    ${HOST}    ${PORT}
+    ${remote}=    Start Process    node    ${CURDIR}/testlibrary.js    ${HOST}    ${PORT}
     Sleep    1s
     Process Should Be Running    ${remote}
     Import Library    Remote    http://${HOST}:${PORT}

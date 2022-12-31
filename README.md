@@ -77,7 +77,7 @@ if (!module.parent) {
 
 remote_tests.robot:
 
-```
+```robot
 *** Settings ***
 Library    Remote    http://localhost:${PORT}
 
