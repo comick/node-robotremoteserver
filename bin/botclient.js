@@ -12,8 +12,8 @@ const serverString = options.host + ':' + options.port;
 
 async function reloadKeywords(serverString) {
     let keywords = await robot.createClient(options);
-    console.log('Connected to remote server at "' + serverString + '"');
-    console.log('Available keywords: ' + Object.keys(keywords).join(', '));
+    console.log(`Connected to remote server at "${serverString}"`);
+    console.log(`Available keywords: ${Object.keys(keywords).sort().join(', ')}`);
     return keywords;
 }
 
@@ -30,7 +30,7 @@ async function reloadKeywords(serverString) {
             }
         }); 
     } catch (err) {
-        console.log('Could not connected to remote server at "' + serverString + '"');
+        console.log(`Could not connect to remote server at "${serverString}"`);
         throw err;
     }
 })();
