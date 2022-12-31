@@ -19,9 +19,7 @@ var lib = module.exports;
  *
  * @param path directory path to count item in.
  */
-lib.countItemsInDirectory = async function(path) {
-    return (await readdir(path)).length;
-}
+lib.countItemsInDirectory = async (path) => (await readdir(path)).length;
 // The doc attribute is used for inspection on the command line of client and doc generation.
 // It's optional and defaults to empty string when missing.
 lib.countItemsInDirectory.doc = 'Returns the number of items in the directory specified by `path`.';
@@ -45,7 +43,7 @@ lib.countItemsInDirectory.doc = 'Returns the number of items in the directory sp
  * @param str1
  * @param str2
  */
-lib.stringsShouldBeEqual = (str1, str2) => {
+lib.stringsShouldBeEqual = function(str1, str2) {
     this.output.warn('Comparing \'%s\' to \'%s\'', str1, str2);
     assert.equal(str1, str2, 'Given strings are not equal');
 };
